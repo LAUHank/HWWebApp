@@ -1,5 +1,6 @@
 package cn.lhl.web.action;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +54,7 @@ public class DownloadServlet extends HttpServlet {
             fileName = URLEncoder.encode(fileName, "utf-8");
         }
         response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
-        InputStream in = new FileInputStream(fullFileName);
+        InputStream in = new BufferedInputStream(new FileInputStream(fullFileName));
         OutputStream out = response.getOutputStream();
         int b;
         while ((b = in.read()) != -1) {
