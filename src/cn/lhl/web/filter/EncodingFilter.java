@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 
 public class EncodingFilter implements Filter {
+    //<Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443" URIEncoding="UTF-8"/>
+    //URIEncoding未配置则为默认的ISO-8859-1 否则tomcatDefaultEncoding要与tomcat server.xml中配置保持一致
+    //如果不一致的话即使经过FILTER处理GET中文参数值依然会乱码
     private String tomcatDefaultEncoding = "ISO-8859-1";
     private String webXmlEncoding = "UTF-8";
 
