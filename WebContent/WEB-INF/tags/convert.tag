@@ -1,4 +1,4 @@
-<%@tag import="java.util.HashMap,java.util.Map"%>
+<%@tag import="java.util.HashMap,java.util.Map,java.util.Enumeration"%>
 <%@tag import="java.net.URLDecoder"%>
 <%@tag import="java.io.File,org.apache.log4j.Logger"%>
 <%@tag pageEncoding="UTF-8"%>
@@ -10,6 +10,33 @@
 	
 <%
     Logger log = Logger.getLogger(request.getLocalName()+request.getRequestURI());
+
+	Enumeration<String> headerNames = request.getHeaderNames();
+	while (headerNames.hasMoreElements()) {
+	    String key = (String) headerNames.nextElement();
+	    if(!("cookie".equalsIgnoreCase(key))) {//目前暂定只透传cookie
+	        continue;
+	    }
+	    String value = request.getHeader(key);
+	    value = value.replaceAll("[\\n\\r]", "");//因为header中有回车换行要进行替换
+	    System.out.println(key+" = ["+value+"]");
+	}	
+	
+	Cookie[] cookies = request.getCookies();
+	for(Cookie cookie : cookies) {
+	    String name = cookie.getName();
+	    String value = cookie.getValue();
+	    String domain = cookie.getDomain();
+	    String cookiePath = cookie.getPath();
+	    int ma = cookie.getMaxAge();
+	    System.out.print("name = ["+name+"] ");
+	    System.out.print("value = ["+value+"] ");
+	    System.out.print("domain = ["+domain+"] ");
+	    System.out.print("cookiePath = ["+cookiePath+"] ");
+	    System.out.print("maxAge = ["+ma+"] ");
+	    System.out.println();
+	}
+	
 	int code = -1;
 	String msg = "tag_error";
     HashMap<String, Object> map = (HashMap<String, Object>)param;

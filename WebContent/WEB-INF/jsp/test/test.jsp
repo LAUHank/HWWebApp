@@ -3,14 +3,17 @@
 <html>
     <body>本页面用于以普通方式测试接口</body>
     <script type="text/javascript" src="${_contextPath }${_jsBase }/common/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="${_contextPath }${_jsBase }/common/myutil.js"></script>
     <script type="text/javascript">  
+    var name = 'mycookie', value = 'mycookie', expires = new Date('2017-09-13'), path = '/', domain = 'localhost', secure;
+    setCookie(name, value, expires, path, domain, secure);
     var url = '${_contextPath }/api/convert.shtm';
 	$.ajax({
 		url: url,
 		data: {
 		    "filename": 'svn.txt',
 		    "path": 'E:/13/other',
-		    "time": 1505197064831,
+		    "time": 1505207132310,
 		},
 		//dataType: 'json',
 		success: function(data) {
