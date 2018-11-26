@@ -7,6 +7,7 @@
 </head>
 <body>
 index<a href="/HWWebApp/download" target="_blank">下载含中文文件名的文件</a><br/>
+<a href="${pageContext.request.contextPath}/HWAction" target="_blank">Hello 我的 World</a>
 <div id="dd">aaa</div>
 <script type="text/javascript" src="${_contextPath }${_jsBase }/common/jquery/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="${_contextPath }${_jsBase }/common/myutil.js"></script>
